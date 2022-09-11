@@ -1,0 +1,18 @@
+
+# 仅仅@EnableEurekaClient是不够的，还需要在配置文件中注明自己的服务注册中心的地址，application.yml配置
+server:
+  port: 8762
+
+spring:
+  application:
+    # 需要指明spring.application.name,这个很重要，这在以后的服务与服务之间相互调用一般都是根据这个name
+    name: service-hi
+
+eureka:
+  client:
+    serviceUrl:
+      # 注册中心地址,注册到哪里去
+      defaultZone: http://localhost:8761/eureka/
+
+
+

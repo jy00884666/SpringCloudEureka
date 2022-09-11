@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    
+    <groupId>org.spring.cloud.parent</groupId>
+    <artifactId>service-hi</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <!--项目产生的构件类型，例如jar、war、ear、pom。插件可以创建他们自己的构件类型，所以前面列的不是全部构件类型-->
+    <packaging>jar</packaging>
+    
+    <!--项目的名称, Maven产生的文档用-->
+    <name>service-hi</name>
+    <!-- 项目的详细描述, Maven 产生的文档用。  当这个元素能够用HTML格式描述时（例如，CDATA中的文本会被解析器忽略，就可以包含HTML标 签），
+    不鼓励使用纯文本描述。如果你需要修改产生的web站点的索引页面，你应该修改你自己的索引页文件，而不是调整这里的文档。-->
+    <description>Demo project for Spring Boot</description>
+    
+    <!-- 父项目的坐标。如果项目中没有规定某个元素的值，那么父项目中的对应值即为项目的默认值。
+             坐标包括group ID，artifact ID和 version。 -->
+    <parent>
+        <groupId>org.spring.cloud.parent</groupId>
+        <artifactId>SpringCloudEureka</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    
+    <dependencies>
+        <!-- 只要类加载路径有spring-cloud-starter-netflix-eureka-client，服务就会自动向Eureka Server注册。 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <!--SpringBoot测试,空的起步依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!--SpringBoot主要依赖,核心spring-boot-starter-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+    </dependencies>
+    
+    <!--
+        build 标签的子标签大致包含三个主体部分
+        1.约定的目录结构
+            <sourceDirectory>D:\idea\maven-test\src\main\java</sourceDirectory>
+            <scriptSourceDirectory>D:\idea\maven-test\src\main\scripts</scriptSourceDirectory>
+            <testSourceDirectory>D:\idea\maven-test\src\test\java</testSourceDirectory>
+            <outputDirectory>D:\idea\maven-test\target\classes</outputDirectory>
+            <testOutputDirectory>D:\idea\maven-test\target\test-classes</testOutputDirectory>
+            <resources>
+                <resource>
+                    <directory>D:\idea\maven-test\src\main\resources</directory>
+                </resource>
+            </resources>
+            <testResources>
+                <testResource>
+                    <directory>D:\idea\maven-test\src\test\resources</directory>
+                </testResource>
+            </testResources>
+            <directory>D:\idea\maven-test\target</directory>
+            <finalName>maven-test-1.0-SNAPSHOT</finalName>
+        2.备用插件管理
+            <pluginManagement>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>1.3</version>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <version>2.2-beta-5</version>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>2.8</version>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-release-plugin</artifactId>
+                        <version>2.5.3</version>
+                    </plugin>
+                </plugins>
+            </pluginManagement>
+        3.生命周期插件
+            <plugins>
+                <plugin>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>2.5</version>
+                    <executions>
+                        <execution>
+                            <id>default-clean</id>
+                            <phase>clean</phase>
+                            <goals>
+                                <goal>clean</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+    -->
+    <build>
+        <plugins>
+            <plugin>
+                <!-- spring boot提供的maven打包插件。可打直接可运行的jar包或war包。 -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

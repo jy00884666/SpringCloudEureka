@@ -1,0 +1,25 @@
+
+#eureka是一个高可用的组件，它没有后端缓存，每一个实例注册之后需要向注册中心发送心跳（因此可以在内存中完成），
+#在默认情况下erureka server也是一个eureka client ,必须要指定一个 server。eureka server的配置文件appication.yml
+server:
+  port: 8761
+  # false:关闭Eureka进入自我保护模式。生产环境下不要关。
+  #enable-self-preservation: false
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    #表示是否将自己注册到Eureka Server，默认为true。由于当前这个应用就是Eureka Server，故而设为false。
+    registerWithEureka: false
+    #表示是否从Eureka Server获取注册信息，默认为true。因为这是一个单点的Eureka Server，不需要同步其他的Eureka Server节点的数据，故而设为false。
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+spring:
+  application:
+    # 服务名
+    name: eurka-server
+
+
