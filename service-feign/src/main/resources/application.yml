@@ -1,0 +1,24 @@
+
+server:
+  # 客户端端口
+  port: 8765
+
+spring:
+  application:
+    # 客户端名称
+    name: service-feign
+    # 调用客户端(提供服务)的名称,因为正式项目中可能会存在调用多个应用的接口的情况,这里就可以配置多个调用名称,如:trade-service: xxx,product-service: xxx
+    customer-service-hi: service-hi
+
+eureka:
+  client:
+    serviceUrl:
+      # 注册中心地址,注册到哪里去
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    # Eureka客户端需要多长时间发送心跳给eureka注册中心,表名它仍然活着,默认为30秒(与下面配置的单位都是秒)
+    lease-renewal-interval-in-seconds: 10
+    # Eureka注册中心在接手到实例的最后一次发出的心跳后,需要等待多久才可以将此实例删除,默认90秒
+    lease-expiration-duration-in-seconds: 30
+
+
