@@ -15,10 +15,18 @@ eureka:
     serviceUrl:
       # 注册中心地址,注册到哪里去
       defaultZone: http://localhost:8761/eureka/
+      # 如果注册中心集群,消费方(客户端)需要注册所有注册中心
+      #defaultZone: http://localhost:8761/eureka/,http://localhost:8760/eureka/
+
   instance:
     # Eureka客户端需要多长时间发送心跳给eureka注册中心,表名它仍然活着,默认为30秒(与下面配置的单位都是秒)
     lease-renewal-interval-in-seconds: 10
     # Eureka注册中心在接手到实例的最后一次发出的心跳后,需要等待多久才可以将此实例删除,默认90秒
     lease-expiration-duration-in-seconds: 30
+
+# Feign是自带断路器的,默认false,不打开,使用断路器hystrix时需要配置为true
+feign:
+  hystrix:
+    enabled: true
 
 

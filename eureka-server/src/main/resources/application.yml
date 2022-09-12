@@ -4,6 +4,9 @@
 server:
   # 注册中心端口
   port: 8761
+  # 注册中心集群可以配置多个,通过端口区分
+  #port: 8760
+
   # false:关闭Eureka进入自我保护模式。生产环境下不要关。
   enable-self-preservation: false
   # 设置清理间隔(单位:毫秒 默认是 60 * 1000)
@@ -13,6 +16,7 @@ eureka:
   instance:
     # 注册中心域名
     hostname: localhost
+
   client:
     #表示是否将自己注册到Eureka Server，默认为true。由于当前这个应用就是Eureka Server，故而设为false。
     registerWithEureka: false
@@ -21,6 +25,8 @@ eureka:
     serviceUrl:
       # 注册中心地址 http://localhost:8761
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      # 注册中心集群则需要配置多个地址,registerWithEureka: 要配置true,默认注册自己,defaultZone: 配置其他注册中心就可以,会互相同步注册信息,这里为了便于理解,把自己的注册中心也一起写上了
+      #defaultZone: http://localhost:8761/eureka/,http://localhost:8760/eureka/
 
 spring:
   application:
