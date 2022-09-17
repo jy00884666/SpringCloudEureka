@@ -1,0 +1,26 @@
+
+# 仅仅@EnableEurekaClient是不够的，还需要在配置文件中注明自己的服务注册中心的地址，application.yml配置
+server:
+  # 服务端,开多个模拟分布式,用不同端口号区分
+  port: 8764
+  #port: 8763
+
+spring:
+  application:
+    # 注册服务的名称(指明spring.application.name),这个很重要，这在以后的服务与服务之间相互调用一般都是根据这个name
+    name: app-service-hello
+
+eureka:
+  client:
+    serviceUrl:
+      # 注册中心地址,注册到哪里去
+      defaultZone: http://localhost:8761/eureka/
+      # 如果注册中心集群,服务方(服务端)需要注册除自己以外所有注册中心,前提是注册中心的registerWithEureka: 要配置true,若是false则需要配置所有注册中心
+      #defaultZone: http://localhost:8761/eureka/,http://localhost:8760/eureka/
+  instance:
+    # Eureka客户端需要多长时间发送心跳给eureka注册中心,表名它仍然活着,默认为30秒(与下面配置的单位都是秒)
+    lease-renewal-interval-in-seconds: 10
+    # Eureka注册中心在接收到实例的最后一次发出的心跳后,需要等待多久才可以将此实例删除,默认90秒
+    lease-expiration-duration-in-seconds: 30
+
+

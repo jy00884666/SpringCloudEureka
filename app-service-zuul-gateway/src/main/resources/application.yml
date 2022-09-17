@@ -1,0 +1,27 @@
+
+# 仅仅@EnableEurekaClient是不够的，还需要在配置文件中注明自己的服务注册中心的地址，application.yml配置
+server:
+  # 服务端,开多个模拟分布式,用不同端口号区分
+  port: 8769
+
+spring:
+  application:
+    # 注册服务的名称(指明spring.application.name),这个很重要，这在以后的服务与服务之间相互调用一般都是根据这个name
+    name: app-service-zuul-gateway
+
+eureka:
+  client:
+    serviceUrl:
+      # 注册中心地址,注册到哪里去
+      defaultZone: http://localhost:8761/eureka/
+
+# 以/service-hi/ 开头的请求都转发给service-hi服务；以/app-service-hello/开头的请求都转发给app-service-hello服务
+zuul:
+  routes:
+    service-hi:
+      path: /service-hi/**
+      serviceId: service-hi
+    app-service-hello:
+      path: /app-service-hello/**
+      serviceId: app-service-hello
+

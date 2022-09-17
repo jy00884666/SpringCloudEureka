@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!--声明项目描述符遵循哪一个POM模型版本。模型本身的版本很少改变，虽然如此，但它仍然是必不可少的，这是为了当Maven引入了新的特性或者其他模型变更的时候，确保稳定性。 -->
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.spring.cloud.parent</groupId>
+    <artifactId>app-service-zuul-gateway</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <!--项目产生的构件类型，例如jar、war、ear、pom。插件可以创建他们自己的构件类型，所以前面列的不是全部构件类型-->
+    <packaging>jar</packaging>
+    
+    <!--项目的名称, Maven产生的文档用-->
+    <name>app-service-zuul-gateway</name>
+    <!-- 项目的详细描述, Maven 产生的文档用。  当这个元素能够用HTML格式描述时（例如，CDATA中的文本会被解析器忽略，就可以包含HTML标 签），
+    不鼓励使用纯文本描述。如果你需要修改产生的web站点的索引页面，你应该修改你自己的索引页文件，而不是调整这里的文档。-->
+    <description>Demo project for Spring Boot</description>
+    
+    <!-- 父项目的坐标。如果项目中没有规定某个元素的值，那么父项目中的对应值即为项目的默认值。
+             坐标包括group ID，artifact ID和 version。 -->
+    <parent>
+        <artifactId>SpringCloudEureka</artifactId>
+        <groupId>org.spring.cloud.parent</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    
+    <dependencies>
+        <!-- 只要类加载路径有spring-cloud-starter-netflix-eureka-client，服务就会自动向Eureka Server注册。 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <!--SpringBoot主要依赖,核心spring-boot-starter-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- Spring Cloud 网关依赖zuul -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

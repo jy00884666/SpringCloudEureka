@@ -6,13 +6,13 @@
     <modelVersion>4.0.0</modelVersion>
     
     <groupId>org.spring.cloud.parent</groupId>
-    <artifactId>SpringCloudEureka</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>app-service-hello</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
     <!--项目产生的构件类型，例如jar、war、ear、pom。插件可以创建他们自己的构件类型，所以前面列的不是全部构件类型-->
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
     
     <!--项目的名称, Maven产生的文档用-->
-    <name>SpringCloudEureka</name>
+    <name>app-service-hello</name>
     <!-- 项目的详细描述, Maven 产生的文档用。  当这个元素能够用HTML格式描述时（例如，CDATA中的文本会被解析器忽略，就可以包含HTML标 签），
     不鼓励使用纯文本描述。如果你需要修改产生的web站点的索引页面，你应该修改你自己的索引页文件，而不是调整这里的文档。-->
     <description>Demo project for Spring Boot</description>
@@ -20,56 +20,33 @@
     <!-- 父项目的坐标。如果项目中没有规定某个元素的值，那么父项目中的对应值即为项目的默认值。
              坐标包括group ID，artifact ID和 version。 -->
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.1.RELEASE</version>
-        <relativePath/>
+        <groupId>org.spring.cloud.parent</groupId>
+        <artifactId>SpringCloudEureka</artifactId>
+        <version>1.0-SNAPSHOT</version>
     </parent>
     
-    <!-- 模块（有时称作子项目） 被构建成项目的一部分。列出的每个模块元素是指向该模块的目录的相对路径 -->
-    <modules>
-        <!--子项目相对路径-->
-        <module>eureka-server</module>
-        <module>service-hi</module>
-        <module>service-feign</module>
-        <module>app-service-hello</module>
-        <module>app-service-zuul-gateway</module>
-    </modules>
-
-    <!-- properties里面可以定义用户自己的属性值,这些属性值可以在POM文件的任何地方同通过${x}的方式来引用 -->
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-        <!--SpringBoot 与 SpringCloud版本 必须要精确否则启动会报错-->
-        <!--<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>-->
-        <spring-cloud.version>Hoxton.SR12</spring-cloud.version>
-    </properties>
-    
     <dependencies>
+        <!-- 只要类加载路径有spring-cloud-starter-netflix-eureka-client，服务就会自动向Eureka Server注册。 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
         <!--SpringBoot测试,空的起步依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!--SpringBoot主要依赖,核心spring-boot-starter-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-openfeign-core</artifactId>
+        </dependency>
     </dependencies>
-    
-    <!-- 继承自该项目的所有子项目的默认依赖信息。这部分的依赖信息不会被立即解析,而是当子项目声明一个依赖
-        （必须描述group ID和artifact ID信息），如果group ID和artifact ID以外的一些信息没有描述，则通过
-            group ID和artifact ID匹配到这里的依赖，并使用这里的依赖信息。 -->
-    <dependencyManagement>
-        <dependencies>
-            <!-- spring colud 基本依赖 -->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
     
     <!--
         build 标签的子标签大致包含三个主体部分
@@ -138,6 +115,5 @@
             </plugin>
         </plugins>
     </build>
-    
-    
+
 </project>

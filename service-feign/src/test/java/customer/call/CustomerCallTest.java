@@ -8,6 +8,7 @@ import org.spring.cloud.feign.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+/**Junit测试*/
 @SpringBootTest(classes = {ServiceFeignApplication.class})
 public class CustomerCallTest {
     
@@ -16,6 +17,7 @@ public class CustomerCallTest {
     @Autowired
     private ProductService productService;
     
+    /*Junit测试使用http请求调用接口sayHi(...),通过@FeignClient*/
     @Test
     public void callHelloWord() {
         logger.info("junit测试-----{}", productService.sayHi("shashijie"));
